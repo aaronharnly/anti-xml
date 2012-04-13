@@ -2,7 +2,7 @@ name := "anti-xml"
 
 organization := "com.codecommit"
 
-version := "0.4-SNAPSHOT"
+version := "0.4pp-SNAPSHOT"
 
 crossScalaVersions := Seq("2.9.1", "2.9.0-1", "2.9.0")
 
@@ -65,13 +65,14 @@ publishArtifact in (Compile, packageSrc) := true
 
 publishArtifact in (Test, packageSrc) := false
 
-publishTo <<= version { (v: String) =>
-  val nexus = "http://nexus.scala-tools.org/content/repositories/"
-  if(v endsWith "-SNAPSHOT") Some("Scala Tools Nexus" at nexus + "snapshots/")
-  else Some("Scala Tools Nexus" at nexus + "releases/")
-}
+//publishTo <<= version { (v: String) =>
+//  val nexus = "http://nexus.scala-tools.org/content/repositories/"
+//  if(v endsWith "-SNAPSHOT") Some("Scala Tools Nexus" at nexus + "snapshots/")
+//  else Some("Scala Tools Nexus" at nexus + "releases/")
+//}
+publishTo := Some(Resolver.file("anti-xml-github-pages", file("../anti-xml-pages/repository/")))
 
-credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+//credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
 resolvers += ScalaToolsSnapshots
 
